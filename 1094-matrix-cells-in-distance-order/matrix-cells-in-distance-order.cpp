@@ -1,0 +1,22 @@
+class Solution {
+public:
+    vector<vector<int>> allCellsDistOrder(int rows, int cols, int rCenter, int cCenter) {
+        vector<vector<int>> cells;
+
+        // Generate all cells
+        for (int r = 0; r < rows; r++) {
+            for (int c = 0; c < cols; c++) {
+                cells.push_back({r, c});
+            }
+        }
+
+        // Sort by Manhattan distance
+        sort(cells.begin(), cells.end(), [&](const vector<int>& a, const vector<int>& b) {
+            int distA = abs(a[0] - rCenter) + abs(a[1] - cCenter);
+            int distB = abs(b[0] - rCenter) + abs(b[1] - cCenter);
+            return distA < distB;
+        });
+
+        return cells;
+    }
+};
